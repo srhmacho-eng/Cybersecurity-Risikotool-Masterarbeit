@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+ENV/
+
+# Secrets & Environment
+.env
+.flaskenv
+*.pkl
+*.pkl.tmp
+
+# Data & Backups
+Backups/
+data/index.pkl
+data/vectorizer.pkl
+data/meta.pkl
+data/docs.pkl
+policies/index.pkl
+policies/vectorizer.pkl
+policies/meta.pkl
+policies/docs.pkl
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

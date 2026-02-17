@@ -1,0 +1,514 @@
+
+# RISK CATALOG
+
+# ASSETS
+assets:
+  - id: A_DATA
+    name: "Geschäftsdaten / Kundendaten"
+    impact: 4.0
+
+  - id: A_EMAIL
+    name: "E-Mail / Identitätsverwaltung"
+    impact: 3.5
+
+  - id: A_ENDPOINT
+    name: "Arbeitsgeräte (PC, Laptop, Mobile)"
+    impact: 2.5
+
+  - id: A_SERVER
+    name: "Server / Fileshares"
+    impact: 3.5
+
+  - id: A_BACKUP
+    name: "Backups / Sicherungen"
+    impact: 4.0
+
+  - id: A_CLOUD
+    name: "Cloud-Dienste"
+    impact: 3.0
+
+  - id: A_NETWORK
+    name: "Netzwerk / Firewall / WLAN"
+    impact: 2.3
+
+
+# THREATS
+threats:
+  - id: T_PHISHING
+    name: "Phishing / Social Engineering"
+    likelihood: 4.0
+
+  - id: T_BEC
+    name: "Business Email Compromise"
+    likelihood: 2.3
+
+  - id: T_RANSOM
+    name: "Ransomware / Verschlüsselung"
+    likelihood: 2.5
+
+  - id: T_MALWARE
+    name: "Malware / Trojaner"
+    likelihood: 3.2
+
+  - id: T_EXPLOIT
+    name: "Ausnutzen von Sicherheitslücken"
+    likelihood: 4.0
+
+  - id: T_DATALEAK
+    name: "Datenleck / Fehlkonfiguration"
+    likelihood: 3.2
+
+  - id: T_INTERNAL
+    name: "Menschlicher Fehler / interner Fehler"
+    likelihood: 3.4
+
+  - id: T_ACCOUNT_TAKEOVER
+    name: "Kontoübernahme"
+    likelihood: 2.2
+
+  - id: T_DDOS
+    name: "Denial of Service"
+    likelihood: 1.3
+
+  - id: T_LOSS_DEVICE
+    name: "Verlust von Geräten"
+    likelihood: 2.5
+
+  - id: T_NETWORK_ATTACK
+    name: "Netzwerkangriff / WLAN-Angriff"
+    likelihood: 2.3
+
+  - id: T_BACKUP_FAILURE
+    name: "Backup-Ausfall"
+    likelihood: 3.4
+
+
+# VULNERABILITIES
+vulnerabilities:
+
+  # ORGANISATION
+  - id: V_SECURITY_ROLE_MISSING
+    name: "Keine verantwortliche Person für IT-Sicherheit"
+    likelihood_mod: 0.5
+    impact_mod: 0.3
+    assets: [A_DATA, A_CLOUD, A_SERVER]
+    threats: [T_INTERNAL]
+    source: ["small","large"]
+
+  - id: V_SECURITY_POLICIES_MISSING
+    name: "Keine schriftlichen Sicherheitsrichtlinien"
+    likelihood_mod: 0.5
+    impact_mod: 0.3
+    assets: [A_DATA, A_CLOUD, A_EMAIL]
+    threats: [T_INTERNAL]
+    source: ["large"]
+
+  - id: V_POLICIES_NOT_REVIEWED
+    name: "Sicherheitsrichtlinien werden nicht überprüft"
+    likelihood_mod: 0.3
+    impact_mod: 0.3
+    assets: [A_DATA]
+    threats: [T_INTERNAL]
+    source: ["large"]
+
+  - id: V_NO_ASSET_INVENTORY
+    name: "Kein Geräte- / Software- / Daten-Inventar vorhanden"
+    likelihood_mod: 0.5
+    impact_mod: 0.3
+    assets: [A_ENDPOINT, A_DATA]
+    threats: [T_INTERNAL]
+    source: ["large"]
+
+  - id: V_NO_INCIDENT_PLAN
+    name: "Kein Incident-Response-Plan"
+    likelihood_mod: 0.3
+    impact_mod: 0.5
+    assets: [A_DATA, A_CLOUD]
+    threats: [T_RANSOM, T_DATALEAK]
+    source: ["small","large"]
+
+  - id: V_NO_ACCESS_LIST
+    name: "Keine Liste mit Zugriffsrechten"
+    likelihood_mod: 0.5
+    impact_mod: 0.3
+    assets: [A_DATA, A_CLOUD]
+    threats: [T_INTERNAL]
+    source: ["large"]
+
+  - id: V_ACCESS_LIST_NOT_REVIEWED
+    name: "Zugriffsrechte werden nicht überprüft"
+    likelihood_mod: 0.3
+    impact_mod: 0.3
+    assets: [A_DATA, A_CLOUD]
+    threats: [T_INTERNAL]
+    source: ["large"]
+
+  - id: V_NO_AUDITS
+    name: "Keine internen oder externen Sicherheitsaudits"
+    likelihood_mod: 0.5
+    impact_mod: 0.3
+    assets: [A_DATA, A_SERVER]
+    threats: [T_INTERNAL]
+    source: ["large"]
+
+
+  # IDENTITÄT & ZUGRIFF
+  - id: V_MFA_MISSING
+    name: "Keine Multi-Faktor-Authentifizierung"
+    likelihood_mod: 1.0
+    impact_mod: 1.0
+    assets: [A_EMAIL, A_CLOUD]
+    threats: [T_PHISHING, T_ACCOUNT_TAKEOVER]
+    source: ["small","large"]
+
+  - id: V_WEAK_PASSWORD_POLICY
+    name: "Passwortrichtlinien fehlen oder sind schwach"
+    likelihood_mod: 0.7
+    impact_mod: 1.0
+    assets: [A_EMAIL, A_CLOUD]
+    threats: [T_ACCOUNT_TAKEOVER]
+    source: ["small","large"]
+
+  - id: V_NO_PASSWORD_MANAGER
+    name: "Kein Passwortmanager verwendet"
+    likelihood_mod: 0.7
+    impact_mod: 0.3
+    assets: [A_EMAIL]
+    threats: [T_PHISHING]
+    source: ["small","large"]
+
+  - id: V_NO_LEAST_PRIVILEGE
+    name: "Least-Privilege-Prinzip wird nicht umgesetzt"
+    likelihood_mod: 0.7
+    impact_mod: 0.7
+    assets: [A_DATA, A_CLOUD]
+    threats: [T_INTERNAL]
+    source: ["small","large"]
+
+  - id: V_OLD_ACCOUNTS_ACTIVE
+    name: "Alte / inaktive Accounts werden nicht entfernt"
+    likelihood_mod: 0.7
+    impact_mod: 0.7
+    assets: [A_EMAIL]
+    threats: [T_INTERNAL, T_ACCOUNT_TAKEOVER]
+    source: ["large"]
+
+  - id: V_NO_ACCOUNT_LIFECYCLE
+    name: "Kein On-/Offboarding-Prozess"
+    likelihood_mod: 0.7
+    impact_mod: 0.3
+    assets: [A_EMAIL, A_DATA]
+    threats: [T_INTERNAL]
+    source: ["small","large"]
+
+  - id: V_ADMIN_ACCOUNTS_WEAK
+    name: "Admin-Konten nicht besonders geschützt"
+    likelihood_mod: 1.0
+    impact_mod: 1.0
+    assets: [A_SERVER, A_EMAIL]
+    threats: [T_EXPLOIT]
+    source: ["large"]
+
+  - id: V_NO_SSO
+    name: "Kein Single-Sign-On"
+    likelihood_mod: 0.3
+    impact_mod: 0.3
+    assets: [A_EMAIL, A_CLOUD]
+    threats: [T_INTERNAL]
+    source: ["large"]
+
+  - id: V_LOGIN_MONITORING_MISSING
+    name: "Login-Aktivitäten werden nicht überwacht"
+    likelihood_mod: 0.7
+    impact_mod: 0.7
+    assets: [A_EMAIL]
+    threats: [T_PHISHING, T_ACCOUNT_TAKEOVER]
+    source: ["small","large"]
+
+
+  # TECHNIK / SYSTEME
+  - id: V_PATCH_MISSING
+    name: "Patch- / Update-Management fehlt"
+    likelihood_mod: 1.0
+    impact_mod: 0.7
+    assets: [A_ENDPOINT, A_SERVER]
+    threats: [T_EXPLOIT]
+    source: ["small","large"]
+
+  - id: V_NO_VULN_SCAN
+    name: "Keine Schwachstellenscans"
+    likelihood_mod: 0.7
+    impact_mod: 0.7
+    assets: [A_ENDPOINT]
+    threats: [T_EXPLOIT]
+    source: ["large"]
+
+  - id: V_EDR_MISSING
+    name: "Kein aktueller Virenschutz / EDR"
+    likelihood_mod: 0.7
+    impact_mod: 0.7
+    assets: [A_ENDPOINT]
+    threats: [T_MALWARE]
+    source: ["large"]
+
+  - id: V_FIREWALL_MISSING
+    name: "Keine Firewall"
+    likelihood_mod: 1.0
+    impact_mod: 0.7
+    assets: [A_NETWORK]
+    threats: [T_NETWORK_ATTACK]
+    source: ["small","large"]
+
+  - id: V_NO_SEGMENTATION
+    name: "Keine Netzwerksegmentierung"
+    likelihood_mod: 0.7
+    impact_mod: 0.7
+    assets: [A_NETWORK]
+    threats: [T_NETWORK_ATTACK]
+    source: ["large"]
+
+  - id: V_NO_MDM
+    name: "Keine Geräteverwaltung (MDM)"
+    likelihood_mod: 0.5
+    impact_mod: 0.3
+    assets: [A_ENDPOINT]
+    threats: [T_LOSS_DEVICE]
+    source: ["large"]
+
+  - id: V_LOGGING_DISABLED
+    name: "Wichtige Ereignisse werden nicht geloggt"
+    likelihood_mod: 0.7
+    impact_mod: 0.7
+    assets: [A_SERVER, A_CLOUD]
+    threats: [T_DATALEAK]
+    source: ["small","large"]
+
+  - id: V_LOGS_NOT_REVIEWED
+    name: "Logs werden nicht ausgewertet"
+    likelihood_mod: 0.3
+    impact_mod: 0.5
+    assets: [A_SERVER]
+    threats: [T_INTERNAL]
+    source: ["large"]
+
+  - id: V_NO_IDS_IPS
+    name: "Keine Angriffserkennung (IDS/IPS)"
+    likelihood_mod: 0.7
+    impact_mod: 0.7
+    assets: [A_NETWORK]
+    threats: [T_NETWORK_ATTACK]
+    source: ["large"]
+
+  - id: V_BACKUP_DAILY_MISSING
+    name: "Backups nicht täglich"
+    likelihood_mod: 0.3
+    impact_mod: 0.5
+    assets: [A_BACKUP]
+    threats: [T_BACKUP_FAILURE]
+    source: ["large"]
+
+  - id: V_NO_OFFSITE_BACKUP
+    name: "Backups nicht extern gelagert"
+    likelihood_mod: 1.0
+    impact_mod: 1.0
+    assets: [A_BACKUP]
+    threats: [T_BACKUP_FAILURE]
+    source: ["small","large"]
+
+  - id: V_BACKUP_UNTESTED
+    name: "Backups nicht getestet"
+    likelihood_mod: 0.5
+    impact_mod: 0.7
+    assets: [A_BACKUP]
+    threats: [T_BACKUP_FAILURE]
+    source: ["large"]
+
+  - id: V_DEVICE_NOT_PROTECTED
+    name: "Geräte nicht gegen Verlust geschützt"
+    likelihood_mod: 0.5
+    impact_mod: 0.3
+    assets: [A_ENDPOINT]
+    threats: [T_LOSS_DEVICE]
+    source: ["large"]
+
+
+  # CLOUD
+  - id: V_CLOUD_CONFIG_WEAK
+    name: "Unsichere Cloud-Konfiguration"
+    likelihood_mod: 1.0
+    impact_mod: 1.0
+    assets: [A_CLOUD]
+    threats: [T_DATALEAK]
+    source: ["small","large"]
+
+  - id: V_CLOUD_MFA_MISSING
+    name: "Cloud-MFA fehlt"
+    likelihood_mod: 1.0
+    impact_mod: 0.7
+    assets: [A_CLOUD]
+    threats: [T_ACCOUNT_TAKEOVER]
+    source: ["large"]
+
+  - id: V_CLOUD_LOGGING_MISSING
+    name: "Cloud-Logs fehlen"
+    likelihood_mod: 0.5
+    impact_mod: 0.3
+    assets: [A_CLOUD]
+    threats: [T_INTERNAL]
+    source: ["large"]
+
+  - id: V_CLOUD_PUBLIC_SHARES
+    name: "Cloud-Freigaben können öffentlich werden"
+    likelihood_mod: 0.7
+    impact_mod: 1.0
+    assets: [A_CLOUD, A_DATA]
+    threats: [T_DATALEAK]
+    source: ["large"]
+
+  - id: V_CLOUD_PERMISSIONS_UNCHECKED
+    name: "Cloud-Berechtigungen werden nicht geprüft"
+    likelihood_mod: 0.7
+    impact_mod: 1.0
+    assets: [A_CLOUD]
+    threats: [T_DATALEAK]
+    source: ["large"]
+
+  - id: V_CLOUD_POLICY_MISSING
+    name: "Keine Cloud-Nutzungsrichtlinie"
+    likelihood_mod: 0.3
+    impact_mod: 0.3
+    assets: [A_CLOUD]
+    threats: [T_INTERNAL]
+    source: ["large"]
+
+  - id: V_CLOUD_CONFIG_UNTESTED
+    name: "Cloud-Konfiguration wird nicht getestet"
+    likelihood_mod: 0.3
+    impact_mod: 0.5
+    assets: [A_CLOUD]
+    threats: [T_DATALEAK]
+    source: ["large"]
+
+  - id: V_CLOUD_DLP_MISSING
+    name: "Kein Schutz vor Datenfreigabe (DLP)"
+    likelihood_mod: 0.5
+    impact_mod: 0.7
+    assets: [A_DATA, A_CLOUD]
+    threats: [T_DATALEAK]
+    source: ["small","large"]
+
+  - id: V_CLOUD_NOT_USED
+    name: "Cloud-Dienste werden nicht genutzt"
+    likelihood_mod: 0.3
+    impact_mod: 0.3
+    assets: [A_CLOUD]
+    threats: [T_INTERNAL]
+    source: ["small","large"]
+
+
+  # PEOPLE
+  - id: V_NO_TRAINING
+    name: "Mitarbeiter werden nicht geschult"
+    likelihood_mod: 0.5
+    impact_mod: 0.3
+    assets: [A_EMAIL]
+    threats: [T_PHISHING]
+    source: ["small","large"]
+
+  - id: V_NO_PHISHING_TESTS
+    name: "Keine Phishing-Tests"
+    likelihood_mod: 0.5
+    impact_mod: 0.3
+    assets: [A_EMAIL]
+    threats: [T_PHISHING]
+    source: ["large"]
+
+  - id: V_LOW_AWARENESS
+    name: "Mitarbeiter erkennen Phishing nicht"
+    likelihood_mod: 0.7
+    impact_mod: 0.5
+    assets: [A_EMAIL]
+    threats: [T_PHISHING]
+    source: ["large"]
+
+  - id: V_NO_INCIDENT_REPORTING
+    name: "Keine Meldewege für Vorfälle"
+    likelihood_mod: 0.3
+    impact_mod: 0.5
+    assets: [A_DATA, A_EMAIL]
+    threats: [T_INTERNAL]
+    source: ["large"]
+
+  - id: V_NO_BYOD_RULES
+    name: "Keine BYOD-Richtlinien"
+    likelihood_mod: 0.3
+    impact_mod: 0.3
+    assets: [A_ENDPOINT]
+    threats: [T_INTERNAL]
+    source: ["large"]
+
+  - id: V_NO_MOBILE_POLICY
+    name: "Keine Regeln für Firmenhandys / Laptops"
+    likelihood_mod: 0.3
+    impact_mod: 0.3
+    assets: [A_ENDPOINT]
+    threats: [T_INTERNAL]
+    source: ["large"]
+
+
+  # DATA / COMPLIANCE
+  - id: V_NO_DATA_CLASSIFICATION
+    name: "Keine Datenklassifizierung"
+    likelihood_mod: 0.5
+    impact_mod: 0.7
+    assets: [A_DATA]
+    threats: [T_DATALEAK]
+    source: ["small","large"]
+
+  - id: V_GDPR_NON_COMPLIANT
+    name: "DSGVO-Vorgaben werden nicht eingehalten"
+    likelihood_mod: 0.5
+    impact_mod: 0.7
+    assets: [A_DATA]
+    threats: [T_DATALEAK]
+    source: ["large"]
+
+  - id: V_NO_RETENTION_RULES
+    name: "Aufbewahrungs- & Löschregeln fehlen"
+    likelihood_mod: 0.3
+    impact_mod: 0.5
+    assets: [A_DATA]
+    threats: [T_INTERNAL]
+    source: ["large"]
+
+  - id: V_DATA_UNENCRYPTED_REST
+    name: "Daten sind nicht verschlüsselt gespeichert"
+    likelihood_mod: 0.5
+    impact_mod: 0.7
+    assets: [A_DATA]
+    threats: [T_DATALEAK]
+    source: ["large"]
+
+  - id: V_DATA_UNENCRYPTED_TRANSIT
+    name: "Daten werden unverschlüsselt übertragen"
+    likelihood_mod: 0.5
+    impact_mod: 0.7
+    assets: [A_DATA]
+    threats: [T_DATALEAK]
+    source: ["small","large"]
+
+  - id: V_VENDOR_NOT_CHECKED
+    name: "Dienstleister werden nicht geprüft"
+    likelihood_mod: 0.5
+    impact_mod: 0.5
+    assets: [A_DATA]
+    threats: [T_INTERNAL]
+    source: ["large"]
+
+  - id: V_VENDOR_NO_AVV
+    name: "Es fehlen AV-Verträge mit Dienstleistern"
+    likelihood_mod: 0.5
+    impact_mod: 0.7
+    assets: [A_DATA]
+    threats: [T_DATALEAK]
+    source: ["large"]

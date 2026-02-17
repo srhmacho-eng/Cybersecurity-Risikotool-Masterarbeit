@@ -1,0 +1,13 @@
+streamlit>=1.38
+pydantic>=2.8
+python-dotenv>=1.0
+openai>=1.43
+PyPDF2>=3.0
+scikit-learn>=1.5
+numpy>=1.26
+pandas>=2.2
+matplotlib>=3.9
+pyyaml>=6.0
+reportlab>=3.6
+plotly>=6.5
+
