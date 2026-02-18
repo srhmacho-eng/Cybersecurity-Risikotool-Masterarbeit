@@ -102,11 +102,10 @@ def base_scores(asset_id: str, threat_id: str, vuln_id: str,
     }
 
 
-# Wert-Begrenzung
 def clamp(x, lo, hi):
     return max(lo, min(hi, x))
 
-# Modifikatoren anwenden
+
 def apply_modifiers(base: dict, profile: ProfileView, threat_id: str, vuln_id: str, control_weight: Optional[float] = None):
     l0 = base["likelihood"]
     i0 = base["impact"]

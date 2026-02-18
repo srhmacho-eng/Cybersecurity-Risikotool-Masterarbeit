@@ -559,7 +559,6 @@ def render_large_questionnaire(state, edit_mode):
     return render_questionnaire(LARGE_FIELDS, state, edit_mode)
 
 
-# Profil-Dict erstellen
 def make_profile(state_dict):
     out = {}
     for fid in PROFILE_FIELDS:

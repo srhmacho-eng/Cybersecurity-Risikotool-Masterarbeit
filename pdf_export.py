@@ -35,7 +35,6 @@ def build_pdf_report(profile_raw, df, vuln_df, policy_search, render_matrix, mod
     if completed_actions is None:
         completed_actions = set()
 
-    # PDF Initialisierung
     buffer = BytesIO()
     doc = SimpleDocTemplate(
         buffer,
@@ -47,7 +46,7 @@ def build_pdf_report(profile_raw, df, vuln_df, policy_search, render_matrix, mod
         bottomMargin=1.8 * cm,
     )
 
-    # PDF-Stile
+   
     styles = getSampleStyleSheet()
 
     title_style = styles["Heading1"]
@@ -90,7 +89,7 @@ def build_pdf_report(profile_raw, df, vuln_df, policy_search, render_matrix, mod
     story.append(Paragraph(f"Erstellt am {datetime.now().strftime('%d.%m.%Y um %H:%M Uhr')}", styles["Normal"]))
     story.append(Spacer(1, 0.8 * cm))
 
-    # Profilübersicht
+   
     story.append(Paragraph("1. Fragebogen-Antworten", h2))
     story.append(Spacer(1, 0.2 * cm))
 
@@ -291,7 +290,7 @@ def build_pdf_report(profile_raw, df, vuln_df, policy_search, render_matrix, mod
     )
 
     # Risiko-Matrizen
-    # Matrix hinzufügen
+
     def add_matrix(title, df_src):
         story.append(Paragraph(title, h3))
         story.append(Spacer(1, 0.2 * cm))

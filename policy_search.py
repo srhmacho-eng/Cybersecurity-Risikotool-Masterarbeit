@@ -1,4 +1,3 @@
-# PDF-Suche (TF-IDF)
 import os
 import pickle
 import re
@@ -8,7 +7,7 @@ from PyPDF2 import PdfReader, errors
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 
-# Container für Suchergebnisse
+
 @dataclass
 class PolicyHit:
     file: str
@@ -44,7 +43,7 @@ def _read_pdf_pages(path: str) -> List[str]:
         print(f"⚠️ {path} konnte nicht gelesen werden.")
     return pages
 
-# PDF-Bestand aufbauen
+
 def build_corpus(policy_dir: str) -> Tuple[List[str], List[Tuple[str,int]]]:
     docs = []; meta = []
     for fn in os.listdir(policy_dir):
@@ -82,7 +81,6 @@ class PolicySearch:
     def _cache_paths(self):
         return {k: os.path.join(self.policy_dir, v) for k, v in CACHE_FILES.items()}
 
-    # Index laden oder neu erstellen
     def _load_or_build(self):
         os.makedirs(self.policy_dir, exist_ok=True)
         paths = self._cache_paths()

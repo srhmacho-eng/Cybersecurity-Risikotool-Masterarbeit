@@ -1,4 +1,3 @@
-# Maßnahmen & Policy-Matching
 from typing import List, Dict
 import yaml
 from policy_search import PolicySearch, PolicyHit
@@ -6,7 +5,7 @@ from llm import chat
 import re
 
 
-# Katalog laden
+
 def load_catalog(path="data/risk_catalog.yaml"):
     with open(path, "r", encoding="utf-8") as f:
         return yaml.safe_load(f)
